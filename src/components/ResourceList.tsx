@@ -44,7 +44,7 @@ export const ResourceList = () => {
       </Alert>
     );
 
-  const filteredResources = data.results.filter((resource) =>
+  const filteredResources = data?.results.filter((resource) =>
     resource.name.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -70,7 +70,7 @@ export const ResourceList = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredResources.map((resource) => (
+          {filteredResources?.map((resource) => (
             <tr key={resource.name}>
               <td>
                 <Link
@@ -92,7 +92,7 @@ export const ResourceList = () => {
         </tbody>
       </Table>
       <Pagination
-        total={Math.ceil(data.count / 10)}
+        total={Math.ceil( data?.count ? data?.count / 10 :0)}
         page={page}
         onChange={setPage}
         className="pagination"
