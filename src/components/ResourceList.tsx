@@ -31,11 +31,11 @@ const fetchResources = async (page: number): Promise<ApiResponse> => {
 export const ResourceList = () => {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
-  const { data, isLoading, isError, error } = useQuery<ApiResponse>(
-    ["resources", page],
-    () => fetchResources(page)
-  );
-
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["resources", page],
+    queryFn: () => fetchResources(page),
+  });
+  
   if (isLoading) return <Loader size="xl" />;
   if (isError)
     return (
